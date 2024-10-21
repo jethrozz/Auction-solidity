@@ -103,13 +103,16 @@ contract Auction {
     }
 
 
-    // 拍卖结束前N分钟内，如果有人出价，则本次拍卖延长M分钟
+    // 拍卖结束前3分钟内，如果有人出价，则本次拍卖延长1分钟
     function checkAndExtendAuction(uint256 bidtime) internal {
-        if(endTime - bidtime < 5 minutes ){
+        if(endTime - bidtime <= 5 minutes ){
             endTime += 1 minutes;
         }
     }
 
-
+    // 后门函数 修改拍卖的结束时间
+    function setEndTime(uint256 _endTime) public {
+        endTime = _endTime;
+    }
     
 }
